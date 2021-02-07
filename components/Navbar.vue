@@ -100,6 +100,34 @@
             $route.name !== 'about'
           "
           xmlns="http://www.w3.org/2000/svg"
+          version="1.1"
+          width="24"
+          height="24"
+          class="h-8 w-8 cursor-pointer ml-4 fill-current text-white hover:text-amber"
+          viewBox="0 0 208 128"
+          @click="handleMD"
+        >
+          <rect
+            width="198"
+            height="118"
+            x="5"
+            y="5"
+            ry="10"
+            stroke="#000"
+            stroke-width="10"
+            fill="none"
+          />
+          <path
+            d="M30 98V30h20l20 25 20-25h20v68H90V59L70 84 50 59v39zm125 0l-30-33h20V30h20v35h20z"
+          />
+        </svg>
+        <svg
+          v-if="
+            !$store.state.pastes.isEdit &&
+            $route.name !== 'index' &&
+            $route.name !== 'about'
+          "
+          xmlns="http://www.w3.org/2000/svg"
           height="24"
           viewBox="0 0 24 24"
           width="24"
@@ -184,6 +212,14 @@ export default {
       }
       e.preventDefault()
       this.handleCopy()
+    },
+
+    handleMD() {
+      var currURL = window.location.href
+      if (currURL.slice(-3) === '.md') {
+        return
+      }
+      window.location.href += '.md'
     },
 
     async handleSave() {
