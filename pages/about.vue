@@ -1,5 +1,5 @@
 <template>
-  <div class="root flex flex-col h-screen">
+  <div class="root flex flex-col h-full">
     <Navbar is-about />
     <div class="p-4 h-full">
       <h1 class="text-title sm:pr-64">
@@ -99,7 +99,7 @@ export default {
 }
 
 .text-body {
-  @apply text-sm text-body pb-2 pr-8;
+  @apply text-sm pb-2 pr-8;
   color: #fafafac2;
 }
 </style>
