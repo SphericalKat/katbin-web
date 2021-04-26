@@ -53,7 +53,24 @@
           d="M3 17.46v3.04c0 .28.22.5.5.5h3.04c.13 0 .26-.05.35-.15L17.81 9.94l-3.75-3.75L3.15 17.1c-.1.1-.15.22-.15.36zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
         />
       </svg>
-
+      <svg
+        v-if="
+          !$store.state.pastes.isEdit &&
+          $route.name !== 'index' &&
+          $route.name !== 'about'
+        "
+        viewBox="0 0 24 24"
+        height="28"
+        width="28"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-label="Raw"
+        class="h-6 w-6 cursor-pointer fill-current text-white hover:text-amber"
+        @click="handleRaw"
+      >
+        <path
+          d="M8.7 15.9L4.8 12l3.9-3.9c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0l-4.6 4.6c-.4.4-.4 1 0 1.4l4.6 4.6c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zm6.6 0l3.9-3.9-3.9-3.9c-.4-.4-.4-1 0-1.4.4-.4 1-.4 1.4 0l4.6 4.6c.4.4.4 1 0 1.4l-4.6 4.6c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4z"
+        />
+      </svg>
       <svg
         v-if="
           (showSave && this.$store.state.inputs.textInput !== '') ||
@@ -165,6 +182,24 @@
             d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
           />
         </svg>
+        <svg
+          v-if="
+            !$store.state.pastes.isEdit &&
+            $route.name !== 'index' &&
+            $route.name !== 'about'
+          "
+          viewBox="0 0 24 24"
+          height="24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-label="Raw"
+          class="h-8 w-8 cursor-pointer fill-current text-white hover:text-amber ml-4"
+          @click="handleRaw"
+        >
+          <path
+            d="M8.7 15.9L4.8 12l3.9-3.9c.4-.4.4-1 0-1.4-.4-.4-1-.4-1.4 0l-4.6 4.6c-.4.4-.4 1 0 1.4l4.6 4.6c.4.4 1 .4 1.4 0 .4-.4.4-1 0-1.4zm6.6 0l3.9-3.9-3.9-3.9c-.4-.4-.4-1 0-1.4.4-.4 1-.4 1.4 0l4.6 4.6c.4.4.4 1 0 1.4l-4.6 4.6c-.4.4-1 .4-1.4 0-.4-.4-.4-1 0-1.4z"
+          />
+        </svg>
       </div>
     </div>
   </nav>
@@ -238,10 +273,19 @@ export default {
     handleMD() {
       var currURL = window.location.href
       if (currURL.slice(-3) === '.md') {
-        window.location.href = window.location.href.split(".md")[0]
+        window.location.href = window.location.href.split('.md')[0]
         return
       }
       window.location.href += '.md'
+    },
+
+    handleRaw() {
+      var currentUrl = window.location.href
+      if (currentUrl.slice(-3) === '.md') {
+        window.location.href = window.location.href.split('.md')[0] + '/raw'
+        return
+      }
+      window.location.href += '/raw'
     },
 
     async handleSave() {
