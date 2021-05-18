@@ -11,28 +11,28 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.13.1",
+    "@nuxtjs/axios": "^5.13.4",
     "@nuxtjs/markdownit": "^2.0.0",
     "@nuxtjs/pwa": "^3.3.5",
-    "core-js": "^3.10.1",
+    "core-js": "^3.12.1",
     "markdown-it-anchor": "^7.1.0",
     "markdown-it-div": "^1.1.0",
     "markdown-it-emoji": "^2.0.0",
-    "markdown-it-highlightjs": "^3.4.0",
-    "nuxt": "^2.15.4",
+    "markdown-it-highlightjs": "^3.5.0",
+    "nuxt": "^2.15.6",
     "nuxt-highlightjs": "^1.0.1",
     "simple-analytics-vue": "^1.1.5"
   },
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.16.0",
+    "@cloudflare/wrangler": "^1.16.1",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/tailwindcss": "^4.0.3",
+    "@nuxtjs/tailwindcss": "^4.1.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.24.0",
-    "eslint-config-prettier": "^8.2.0",
+    "eslint": "^7.26.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.3.0"
   }
 }
