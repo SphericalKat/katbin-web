@@ -45,14 +45,19 @@ async function handleEvent(event) {
     const urlParts = event.request.url
       .replace('https://katb.in/', '')
       .split('/')
+    const response = await fetch(`https://api.katb.in/api/paste/${urlParts[0]}`)
+    const content = await response.json()
+
+    // if we have a suffix
     if (urlParts.length === 2) {
       if (urlParts[1] === 'raw') {
-        const response = await fetch(
-          `https://api.katb.in/api/paste/${urlParts[0]}`
-        )
-        const content = await response.json()
         return new Response(content.content, { status: 200 })
       }
+    }
+
+    // if content is a url
+    if (content.is_url) {
+      return Response.redirect(content.content, 301)
     }
 
     return await getAssetFromKV(event, options)
