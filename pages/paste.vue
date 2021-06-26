@@ -52,12 +52,14 @@ export default {
       )
 
       if (pasteContent.is_url && prelude[0] !== 'v') {
-        redirect(pasteContent.content)
+				const url = `${pasteContent.content.includes("http") ? "" : "https://"}${pasteContent.content}`
+        redirect(new URL(url).toString())
       }
 
       store.commit('pastes/setContent', pasteContent)
       this.slug = paste
     } catch (err) {
+			console.log(err)
       redirect('/')
     }
   },

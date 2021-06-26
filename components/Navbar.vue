@@ -1,6 +1,16 @@
 <template>
   <nav
-    class="nav-bg font-sans flex items-center justify-between flex-wrap py-3 px-6 h-16"
+    class="
+      nav-bg
+      font-sans
+      flex
+      items-center
+      justify-between
+      flex-wrap
+      py-3
+      px-6
+      h-16
+    "
   >
     <div class="flex items-center flex-no-shrink text-white mr-6">
       <nuxt-link to="/">
@@ -18,7 +28,15 @@
         "
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
-        class="h-8 w-8 cursor-pointer mr-4 fill-current text-white hover:text-amber"
+        class="
+          h-8
+          w-8
+          cursor-pointer
+          mr-4
+          fill-current
+          text-white
+          hover:text-amber
+        "
         viewBox="0 0 208 128"
         @click="handleMD"
       >
@@ -44,7 +62,15 @@
           $route.name !== 'index' &&
           $route.name !== 'about'
         "
-        class="h-6 w-6 cursor-pointer fill-current text-white mr-4 hover:text-amber"
+        class="
+          h-6
+          w-6
+          cursor-pointer
+          fill-current
+          text-white
+          mr-4
+          hover:text-amber
+        "
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         @click="handleEdit"
@@ -93,14 +119,30 @@
       <div class="text-base sm:text-sm sm:flex-grow">
         <nuxt-link
           to="/about"
-          class="no-underline block mt-4 sm:inline-block sm:mt-0 text-white hover:text-amber mr-4"
+          class="
+            no-underline
+            block
+            mt-4
+            sm:inline-block sm:mt-0
+            text-white
+            hover:text-amber
+            mr-4
+          "
           :class="{ 'text-amber': isAbout }"
         >
           About
         </nuxt-link>
         <nuxt-link
           to="#"
-          class="no-underline block mt-4 sm:inline-block sm:mt-0 text-white hover:text-amber mr-4"
+          class="
+            no-underline
+            block
+            mt-4
+            sm:inline-block sm:mt-0
+            text-white
+            hover:text-amber
+            mr-4
+          "
           :class="{ 'text-amber': isChangelog }"
         >
           Changelog
@@ -113,7 +155,14 @@
             !$store.state.pastes.isEdit &&
             $route.name !== 'index'
           "
-          class="h-6 w-6 cursor-pointer fill-current text-white hover:text-amber"
+          class="
+            h-6
+            w-6
+            cursor-pointer
+            fill-current
+            text-white
+            hover:text-amber
+          "
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           @click="handleEdit"
@@ -128,7 +177,14 @@
             (showSave && this.$store.state.inputs.textInput !== '') ||
             $store.state.pastes.isEdit
           "
-          class="h-6 w-6 cursor-pointer fill-current text-white hover:text-amber"
+          class="
+            h-6
+            w-6
+            cursor-pointer
+            fill-current
+            text-white
+            hover:text-amber
+          "
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           @click="handleSave"
@@ -145,7 +201,16 @@
           "
           xmlns="http://www.w3.org/2000/svg"
           version="1.1"
-          class="h-8 w-8 cursor-pointer ml-4 fill-current border-white text-white hover:text-amber"
+          class="
+            h-8
+            w-8
+            cursor-pointer
+            ml-4
+            fill-current
+            border-white
+            text-white
+            hover:text-amber
+          "
           viewBox="0 0 208 128"
           @click="handleMD"
         >
@@ -174,7 +239,18 @@
           viewBox="0 0 24 24"
           width="24"
           aria-label="Copy"
-          class="h-6 w-6 cursor-pointer fill-current text-white hover:text-amber ml-4 copy-btn sm:hidden md:inline-block"
+          class="
+            h-6
+            w-6
+            cursor-pointer
+            fill-current
+            text-white
+            hover:text-amber
+            ml-4
+            copy-btn
+            sm:hidden
+            md:inline-block
+          "
           @click="handleCopy"
         >
           <path d="M0 0h24v24H0z" fill="none" />
@@ -193,7 +269,15 @@
           width="24"
           xmlns="http://www.w3.org/2000/svg"
           aria-label="Raw"
-          class="h-8 w-8 cursor-pointer fill-current text-white hover:text-amber ml-4"
+          class="
+            h-8
+            w-8
+            cursor-pointer
+            fill-current
+            text-white
+            hover:text-amber
+            ml-4
+          "
           @click="handleRaw"
         >
           <path
@@ -291,9 +375,7 @@ export default {
     async handleSave() {
       if (this.$store.state.pastes.isEdit) {
         try {
-          const {
-            id,
-          } = await this.$axios.$patch(
+          const { id } = await this.$axios.$patch(
             'https://api.katb.in/api/paste',
             this.$store.state.pastes.content,
             { withCredentials: true }
@@ -318,6 +400,8 @@ export default {
           )
 
           this.$store.commit('inputs/set', '')
+					
+					alert(`${isUrl ? 'v/' : ''}${pasteId}`)
 
           this.$router.push({ path: `${isUrl ? 'v/' : ''}${pasteId}` })
         } catch (err) {
