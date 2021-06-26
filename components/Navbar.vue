@@ -400,12 +400,11 @@ export default {
           )
 
           this.$store.commit('inputs/set', '')
-					
-					alert(`${isUrl ? 'v/' : ''}${pasteId}`)
 
           this.$router.push({ path: `${isUrl ? 'v/' : ''}${pasteId}` })
         } catch (err) {
           // eslint-disable-next-line no-console
+          this.$store.commit('inputs/set', '')
           console.log(err)
         }
       }
