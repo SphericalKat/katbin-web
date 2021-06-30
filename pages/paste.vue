@@ -1,23 +1,45 @@
 <template>
   <div class="flex flex-col h-full">
     <Navbar />
-    <code
-      v-if="!$store.state.pastes.isEdit && !isMarkdown"
-      id="content"
-      v-highlight="$store.state.pastes.content.content"
-      class="break-word pl-4 h-full nomarkdown"
-    ></code>
-    <div
-      v-else-if="isMarkdown"
-      class="text-white sm:w-3/4 sm:m-auto markdown h-full overflow-auto w-full link-color"
-      v-html="$md.render($store.state.pastes.content.content)"
-    ></div>
-    <textarea
-      v-else
-      v-model="textEdit"
-      spellcheck="false"
-      class="h-full px-6 py-4 outline-none"
-    ></textarea>
+    <div class="flex w-full h-full">
+      <div
+        v-if="!isMarkdown"
+        class="flex flex-col pt-4 items-center border-r border-gray-600"
+      >
+        <div
+          class="select-none text-center text-gray-600"
+          v-for="line in lineNumbers"
+          :key="line"
+        >
+          <div class="line-item px-3">{{ line }}</div>
+        </div>
+      </div>
+      <code
+        v-if="!$store.state.pastes.isEdit && !isMarkdown"
+        id="content"
+        v-highlight="$store.state.pastes.content.content"
+        class="break-word pl-2 h-full w-full nomarkdown"
+      ></code>
+      <div
+        v-else-if="isMarkdown"
+        class="
+          text-white
+          sm:w-3/4 sm:m-auto
+          markdown
+          h-full
+          overflow-auto
+          w-full
+          link-color
+        "
+        v-html="$md.render($store.state.pastes.content.content)"
+      ></div>
+      <textarea
+        v-else
+        v-model="textEdit"
+        spellcheck="false"
+        class="h-full px-6 py-4 outline-none"
+      ></textarea>
+    </div>
     <CustomFooter :slug="slug" />
   </div>
 </template>
@@ -52,14 +74,16 @@ export default {
       )
 
       if (pasteContent.is_url && prelude[0] !== 'v') {
-				const url = `${pasteContent.content.includes("http") ? "" : "https://"}${pasteContent.content}`
+        const url = `${
+          pasteContent.content.includes('http') ? '' : 'https://'
+        }${pasteContent.content}`
         redirect(new URL(url).toString())
       }
 
       store.commit('pastes/setContent', pasteContent)
       this.slug = paste
     } catch (err) {
-			console.log(err)
+      console.log(err)
       redirect('/')
     }
   },
@@ -72,6 +96,14 @@ export default {
 
       set(value) {
         this.$store.commit('pastes/setContentText', value)
+      },
+    },
+
+    lineNumbers: {
+      get() {
+        const content = this.$store.state.pastes.content.content
+        if (!content) return 0
+        return content.split('\n').map((_, i) => i)
       },
     },
   },
@@ -104,8 +136,13 @@ export default {
   overflow: auto;
   background: #212121;
   overflow-wrap: break-word;
-  padding-left: 2rem;
+  padding-left: 1.5rem;
   padding-top: 1rem;
+  font-family: 'JetbrainsMono', Courier, monospace;
+  font-size: 14px;
+}
+
+.line-item {
   font-family: 'JetbrainsMono', Courier, monospace;
   font-size: 14px;
 }
@@ -161,7 +198,7 @@ hr {
 }
 
 .markdown {
-  border: 1px solid #3b434b;
+  /* border: 1px solid #3b434b; */
   border-radius: 6px;
   padding-right: 32px;
   padding-left: 32px;
