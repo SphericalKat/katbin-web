@@ -57,7 +57,6 @@ async function handleEvent(event) {
 
     return await getAssetFromKV(event, options)
   } catch (e) {
-		return new Response(e.toString(), { status: 500 })
     // if an error is thrown try to serve the asset at 404.html
     if (!DEBUG) {
       try {
