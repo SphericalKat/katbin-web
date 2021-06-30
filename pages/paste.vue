@@ -37,7 +37,7 @@
         v-else
         v-model="textEdit"
         spellcheck="false"
-        class="h-full px-6 py-4 outline-none"
+        class="h-full w-full px-6 py-4 outline-none"
       ></textarea>
     </div>
     <CustomFooter :slug="slug" />

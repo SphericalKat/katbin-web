@@ -1,12 +1,14 @@
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col h-full w-full">
     <Navbar show-save />
+
     <textarea
       v-model="textInput"
       spellcheck="false"
       class="h-full px-6 py-4 outline-none"
       placeholder="> Paste, save, share! (Pasting just a URL will shorten it!)"
     ></textarea>
+
     <CustomFooter />
   </div>
 </template>
