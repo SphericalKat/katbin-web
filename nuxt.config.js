@@ -103,13 +103,6 @@ export default {
       'markdown-it-div',
       'markdown-it-highlightjs',
       'markdown-it-emoji',
-      [
-        'markdown-it-anchor',
-        {
-          permalink: true,
-          permalinkSymbol: '🔗',
-        },
-      ],
     ],
   },
 }
