@@ -88,11 +88,3 @@ sw.*
 
 # Vim swap files
 *.swp
-
-.yarn/*
-!.yarn/patches
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-.pnp.*
