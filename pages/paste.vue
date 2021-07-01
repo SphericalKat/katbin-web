@@ -83,7 +83,7 @@ export default {
       store.commit('pastes/setContent', pasteContent)
       this.slug = paste
     } catch (err) {
-      console.log(err)
+      console.log("Error: ", err)
       redirect('/')
     }
   },
