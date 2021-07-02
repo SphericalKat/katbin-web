@@ -1,11 +1,8 @@
 <template>
-  <div class="flex flex-col h-full">
+  <div class="flex flex-col h-full max-h-full overflow-hidden">
     <Navbar />
-    <div class="flex w-full h-full">
-      <div
-        v-if="!isMarkdown"
-        class="flex flex-col pt-4 items-center border-r border-gray-600"
-      >
+    <div class="flex w-full h-full overflow-y-auto">
+      <div v-if="!$store.state.pastes.isEdit && !isMarkdown" class="flex flex-col h-full pt-4 items-center overflow-visible">
         <div
           class="select-none text-center text-gray-600"
           v-for="line in lineNumbers"
@@ -18,7 +15,7 @@
         v-if="!$store.state.pastes.isEdit && !isMarkdown"
         id="content"
         v-highlight="$store.state.pastes.content.content"
-        class="break-word pl-2 h-full w-full nomarkdown"
+        class="break-word pl-2 h-full w-full nomarkdown overflow-visible"
       ></code>
       <div
         v-else-if="isMarkdown"
@@ -132,10 +129,9 @@ export default {
 
 .nomarkdown {
   white-space: pre;
-  overflow-y: scroll;
-  overflow: auto;
   background: #212121;
   overflow-wrap: break-word;
+	overflow-x: unset;
   padding-left: 1.5rem;
   padding-top: 1rem;
   font-family: 'JetbrainsMono', Courier, monospace;
