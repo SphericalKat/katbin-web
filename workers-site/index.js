@@ -55,7 +55,7 @@ async function handleEvent(event) {
       }
     }
 
-    return await getAssetFromKV(event, options)
+    return await fetch(request)
   } catch (e) {
     // if an error is thrown try to serve the asset at 404.html
     if (!DEBUG) {
