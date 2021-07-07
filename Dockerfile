@@ -27,7 +27,7 @@ ADD nuxt.config.js ./
 
 COPY --from=build ./app/node_modules ./node_modules/
 COPY --from=build ./app/.nuxt ./.nuxt/
-# COPY --from=build ./app/src/static ./src/static/
+COPY --from=build ./app/static ./static/
 
 ENV NUXT_HOST=0.0.0.0
 ENV NUXT_PORT=5000
