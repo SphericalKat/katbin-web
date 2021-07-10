@@ -99,8 +99,8 @@ export default {
     lineNumbers: {
       get() {
         const content = this.$store.state.pastes.content.content
-        if (!content) return 0
-        return content.split('\n').map((_, i) => i)
+        if (!content) return 1
+        return content.split('\n').map((_, i) => i+1)
       },
     },
   },
