@@ -1,3 +1,4 @@
+# Note: this repo has been archived, check out https://github.com/SphericalKat/katbin instead
 # katbin-web
 
 ## Build Setup
